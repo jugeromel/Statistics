@@ -1,0 +1,64 @@
+📊 Conceitos Fundamentais de Amostragem em Estatística 
+
+População
+Conjunto completo de elementos ou dados de interesse em um estudo estatístico.
+
+Amostra
+Subconjunto da população, utilizado para inferir características sobre o todo.
+
+Por que usar amostras?
+
+Redução de custos e tempo.
+
+Viabilidade prática em estudos de grande escala (ex: censos, pesquisas de mercado).
+
+Importância da Técnica de Amostragem
+
+Garante representatividade da amostra.
+
+Minimiza viés e aumenta a precisão dos resultados.
+
+🧪 Principais Técnicas de Amostragem 1. Amostragem Aleatória Simples 
+
+Seleção aleatória de elementos da população.
+
+Vantagem: Reduz o viés de seleção.
+
+Desvantagem: Pode não representar bem todos os subgrupos em populações grandes ou heterogêneas.
+
+2. Amostragem Sistemática 
+
+Seleção baseada em uma regra fixa (ex: cada 10º elemento).
+
+Vantagem: Fácil implementação e eficiência.
+
+Desvantagem: Pode introduzir viés se a regra for mal definida.
+
+3. Amostragem Estratificada 
+
+Divisão da população em estratos homogêneos e amostragem dentro de cada estrato.
+
+Vantagem: Garante representação de todos os grupos relevantes.
+
+Desvantagem: Exige conhecimento prévio da estrutura populacional.
+
+4. Amostragem por Conglomerados 
+
+Divisão da população em conglomerados heterogêneos; seleção aleatória de alguns conglomerados.
+
+Vantagem: Útil quando a população já está naturalmente agrupada.
+
+Desvantagem: Conglomerados mal escolhidos podem gerar viés.
+
+📐 Parâmetros e Estimativas 
+
+Parâmetro: Medida calculada com base na população.
+
+Estimativa: Medida calculada com base na amostra.
+
+⚠️ Erros e Precisão 
+
+Erro amostral: Diferença entre a estimativa da amostra e o valor real da população.
+
+Margem de erro: Mede a precisão da estimativa, considerando o tamanho da amostra e a variabilidade dos dados.
+
