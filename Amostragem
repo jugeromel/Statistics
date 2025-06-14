@@ -62,3 +62,97 @@ Erro amostral: Diferença entre a estimativa da amostra e o valor real da popula
 
 Margem de erro: Mede a precisão da estimativa, considerando o tamanho da amostra e a variabilidade dos dados.
 
+
+# === 1. IMPORTAR BIBLIOTECAS NECESSÁRIAS ===
+import pandas as pd
+import numpy as np
+
+# === 2. CRIAÇÃO DE UM DATAFRAME FICTÍCIO ===
+# Gerando uma base com 100 pessoas, com colunas ID, Idade e Sexo
+np.random.seed(42)  # Garantir reprodutibilidade dos resultados
+
+df = pd.DataFrame({
+    'ID': range(1, 101),  # IDs de 1 a 100
+    'Idade': np.random.randint(18, 60, size=100),  # Idades entre 18 e 59
+    'Sexo': np.random.choice(['Masculino', 'Feminino'], size=100)  # Sexo aleatório
+})
+
+print("Base de dados original:")
+print(df.head())
+
+# === 3. AMOSTRAGEM ALEATÓRIA SIMPLES ===
+# Seleciona aleatoriamente 'n' indivíduos da população
+amostra_simples = df.sample(n=10, random_state=42)
+
+print("\nAmostragem Aleatória Simples (10 indivíduos):")
+print(amostra_simples)
+
+# === 4. AMOSTRAGEM SISTEMÁTICA ===
+# Seleciona indivíduos a partir de um intervalo fixo (k)
+N = len(df)        # Tamanho da população
+n = 10             # Tamanho da amostra
+k = N // n         # Intervalo de seleção
+
+start = np.random.randint(0, k)  # Ponto de partida aleatório
+indices_sist = list(range(start, N, k))  # Índices selecionados sistematicamente
+
+amostra_sistematica = df.iloc[indices_sist]
+
+print("\nAmostragem Sistemática (10 indivíduos):")
+print(amostra_sistematica)
+
+# === 5. AMOSTRAGEM ESTRATIFICADA ===
+# Divide a população em grupos (estratos) e amostra cada grupo
+# Exemplo: selecionar 5 indivíduos de cada sexo
+
+amostra_estratificada = df.groupby('Sexo', group_keys=False).apply(lambda x: x.sample(n=5, random_state=42))
+
+print("\nAmostragem Estratificada (5 de cada sexo):")
+print(amostra_estratificada)
+# === 1. IMPORTAR BIBLIOTECAS NECESSÁRIAS ===
+import pandas as pd
+import numpy as np
+
+# === 2. CRIAÇÃO DE UM DATAFRAME FICTÍCIO ===
+# Gerando uma base com 100 pessoas, com colunas ID, Idade e Sexo
+np.random.seed(42)  # Garantir reprodutibilidade dos resultados
+
+df = pd.DataFrame({
+    'ID': range(1, 101),  # IDs de 1 a 100
+    'Idade': np.random.randint(18, 60, size=100),  # Idades entre 18 e 59
+    'Sexo': np.random.choice(['Masculino', 'Feminino'], size=100)  # Sexo aleatório
+})
+
+print("Base de dados original:")
+print(df.head())
+
+# === 3. AMOSTRAGEM ALEATÓRIA SIMPLES ===
+# Seleciona aleatoriamente 'n' indivíduos da população
+amostra_simples = df.sample(n=10, random_state=42)
+
+print("\nAmostragem Aleatória Simples (10 indivíduos):")
+print(amostra_simples)
+
+# === 4. AMOSTRAGEM SISTEMÁTICA ===
+# Seleciona indivíduos a partir de um intervalo fixo (k)
+N = len(df)        # Tamanho da população
+n = 10             # Tamanho da amostra
+k = N // n         # Intervalo de seleção
+
+start = np.random.randint(0, k)  # Ponto de partida aleatório
+indices_sist = list(range(start, N, k))  # Índices selecionados sistematicamente
+
+amostra_sistematica = df.iloc[indices_sist]
+
+print("\nAmostragem Sistemática (10 indivíduos):")
+print(amostra_sistematica)
+
+# === 5. AMOSTRAGEM ESTRATIFICADA ===
+# Divide a população em grupos (estratos) e amostra cada grupo
+# Exemplo: selecionar 5 indivíduos de cada sexo
+
+amostra_estratificada = df.groupby('Sexo', group_keys=False).apply(lambda x: x.sample(n=5, random_state=42))
+
+print("\nAmostragem Estratificada (5 de cada sexo):")
+print(amostra_estratificada)
+
