@@ -1,0 +1,101 @@
+ O que é Intervalo de Confiança (IC)?
+O Intervalo de Confiança estima um intervalo provável onde está o valor real de um parâmetro populacional (como média ou proporção), com base em uma amostra.
+
+Exemplo: "A média de altura é 1,70m ± 0,03m, com 95% de confiança."
+
+1. Intervalo de Confiança para a Média (μ)
+Fórmula (população com desvio conhecido ou n grande):
+𝐼
+𝐶
+=
+𝑥
+ˉ
+±
+𝑍
+𝛼
+/
+2
+⋅
+𝜎
+𝑛
+IC= 
+x
+ˉ
+ ±Z 
+α/2
+​
+ ⋅ 
+n
+​
+ 
+σ
+​
+ 
+𝑥
+ˉ
+x
+ˉ
+  = média amostral
+
+𝜎
+σ = desvio padrão da amostra (ou da população)
+
+𝑛
+n = tamanho da amostra
+
+𝑍
+𝛼
+/
+2
+Z 
+α/2
+​
+  = valor da distribuição normal (para 95%, 
+𝑍
+=
+1.96
+Z=1.96)import numpy as np
+from scipy import stats
+
+# Exemplo de alturas
+alturas = np.array([1.70, 1.68, 1.75, 1.72, 1.69, 1.74, 1.73])
+media = np.mean(alturas)
+desvio = np.std(alturas, ddof=1)  # amostral
+n = len(alturas)
+alpha = 0.05
+
+# intervalo de confiança 95%
+t_crit = stats.t.ppf(1 - alpha/2, df=n-1)
+margem_erro = t_crit * (desvio / np.sqrt(n))
+
+ic = (media - margem_erro, media + margem_erro)
+print(f"IC para a média (95%): {ic}")
+
+Intervalo de Confiança para Proporção (p)
+# Exemplo: 180 vacinados em uma amostra de 200 pessoas
+sucessos = 180
+n = 200
+p_hat = sucessos / n
+z = 1.96  # 95% de confiança
+
+erro = z * np.sqrt((p_hat * (1 - p_hat)) / n)
+ic = (p_hat - erro, p_hat + erro)
+print(f"IC para proporção (95%): {ic}")
+
+| Área                  | Aplicação prática                                |
+| --------------------- | ------------------------------------------------ |
+| Saúde pública         | Estimar taxa de infecção ou vacinação            |
+| Educação              | Média de notas por turma ou instituição          |
+| Marketing             | Proporção de usuários satisfeitos com um produto |
+| Pesquisa eleitoral    | Estimar % de intenção de votos (ex: 52% ± 2%)    |
+| Controle de qualidade | Média de defeitos por lote ou falhas             |
+
+| Tipo de IC    | Quando usar                                         | Distribuição |
+| ------------- | --------------------------------------------------- | ------------ |
+| Média (μ)     | Variáveis contínuas (ex: altura, salário)           | Normal ou t  |
+| Proporção (p) | Resultados binários (ex: sim/não, sucesso/fracasso) | Normal       |
+
+
+
+
+
