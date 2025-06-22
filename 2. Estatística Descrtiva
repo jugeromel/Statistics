@@ -1,0 +1,94 @@
+ 1. Medidas de Tendência Central
+➤ Média (média aritmética)
+Conceito: Soma dos valores dividida pelo número de observações.
+
+Uso: Média de notas de alunos, salários, temperaturas.
+
+Código:
+
+import pandas as pd
+
+dados = pd.Series([10, 20, 30, 40, 50])
+media = dados.mean()
+print("Média:", media)
+
+➤ Mediana
+Conceito: Valor central de um conjunto ordenado.
+
+Uso: Ideal quando há outliers (ex: renda).
+
+Código:
+
+mediana = dados.median()
+print("Mediana:", mediana)
+➤ Moda
+Conceito: Valor que mais se repete.
+
+Uso: Tamanho de roupa mais vendido, nota mais frequente.
+
+Código:
+
+moda = dados.mode()
+print("Moda:", moda.values)
+📈 2. Medidas de Dispersão
+➤ Variância
+Conceito: Média dos quadrados dos desvios em relação à média.
+
+Uso: Avaliar a consistência de notas de alunos.
+
+Código:
+
+variancia = dados.var()
+print("Variância:", variancia)
+➤ Desvio Padrão
+Conceito: Raiz quadrada da variância; mostra o quanto os valores se afastam da média.
+
+Uso: Análise de risco financeiro.
+
+Código:
+
+desvio_padrao = dados.std()
+print("Desvio Padrão:", desvio_padrao)
+➤ Coeficiente de Variação (CV)
+Conceito: Relação entre desvio padrão e média (em %).
+
+Interpretação: CV ≤ 15% → dados pouco dispersos.
+
+Uso: Comparar variabilidade entre conjuntos com médias diferentes.
+
+Código:
+
+cv = (desvio_padrao / media) * 100
+print("Coeficiente de Variação (%):", round(cv, 2))
+📐 3. Quantis e Quartis
+Conceito: Dividem os dados em partes iguais. Quartis dividem em 4 partes (Q1, Q2=mediana, Q3).
+
+Uso: Análise de distribuição de salários ou idades.
+
+Código:
+
+quartis = dados.quantile([0.25, 0.5, 0.75])
+print("Quartis:\n", quartis)
+🔗 4. Correlação
+➤ Correlação de Pearson
+Conceito: Mede relação linear entre duas variáveis (de -1 a 1).
+
+Uso: Altura x peso, estudo x nota.
+
+Código:
+
+df = pd.DataFrame({
+    'horas_estudo': [1, 2, 3, 4, 5],
+    'nota': [50, 55, 65, 70, 80]
+})
+cor_pearson = df['horas_estudo'].corr(df['nota'], method='pearson')
+print("Correlação de Pearson:", cor_pearson)
+➤ Correlação de Spearman
+Conceito: Mede relação monotônica com base nas posições (ranks).
+
+Uso: Dados não lineares ou ordinais (ex: ranking de satisfação).
+
+Código:
+
+cor_spearman = df['horas_estudo'].corr(df['nota'], method='spearman')
+print("Correlação de Spearman:", cor_spearman)
