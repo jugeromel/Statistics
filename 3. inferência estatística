@@ -1,0 +1,149 @@
+
+📊 1. Distribuição de Frequência
+Conceito: Mostra quantas vezes cada valor (ou faixa de valores) aparece em um conjunto de dados.
+
+Uso: Frequência de notas em uma turma, quantidade de clientes por dia.
+
+Código com histograma:
+
+python
+Copiar código
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+dados = pd.Series([5, 7, 8, 8, 9, 10, 10, 10, 11, 12, 13, 14, 15])
+sns.histplot(dados, bins=5, kde=False)
+plt.title('Distribuição de Frequência')
+plt.xlabel('Valores')
+plt.ylabel('Frequência')
+plt.show()
+🎲 2. Distribuição de Bernoulli
+Conceito: Variável com apenas dois resultados possíveis, como 0 e 1 (sucesso ou fracasso).
+
+Exemplo: Cara ou coroa, acerto ou erro.
+
+Código:
+
+python
+Copiar código
+import numpy as np
+
+from scipy.stats import bernoulli
+resultados = bernoulli.rvs(p=0.6, size=1000)  # p é a chance de sucesso
+sns.histplot(resultados, discrete=True)
+plt.title('Distribuição de Bernoulli (p=0.6)')
+plt.xlabel('Resultado')
+plt.ylabel('Frequência')
+plt.show()
+🧮 3. Distribuição Binomial
+Conceito: Soma de vários experimentos de Bernoulli.
+
+Exemplo: Jogar uma moeda 10 vezes e contar quantas saem cara.
+
+Código:
+
+python
+Copiar código
+from scipy.stats import binom
+
+# 10 tentativas, probabilidade de sucesso = 0.5
+x = np.arange(0, 11)
+y = binom.pmf(x, n=10, p=0.5)
+
+plt.bar(x, y)
+plt.title('Distribuição Binomial (n=10, p=0.5)')
+plt.xlabel('Número de Sucessos')
+plt.ylabel('Probabilidade')
+plt.show()
+⏳ 4. Distribuição Exponencial
+Conceito: Modela o tempo até o próximo evento (sem memória).
+
+Exemplo: Tempo até a chegada de um cliente em uma fila.
+
+Código:
+
+python
+Copiar código
+from scipy.stats import expon
+
+valores = expon.rvs(scale=2, size=1000)
+sns.histplot(valores, bins=30, kde=True)
+plt.title('Distribuição Exponencial (λ=0.5)')
+plt.xlabel('Tempo')
+plt.ylabel('Frequência')
+plt.show()
+🧪 5. Distribuição Beta
+Conceito: Distribuição contínua em [0,1], usada para representar probabilidades variáveis.
+
+Exemplo: Taxas de cliques, proporção de sucesso em testes A/B.
+
+Código:
+
+python
+Copiar código
+from scipy.stats import beta
+
+x = np.linspace(0, 1, 1000)
+y = beta.pdf(x, a=2, b=5)  # forma assimétrica
+
+plt.plot(x, y)
+plt.title('Distribuição Beta (α=2, β=5)')
+plt.xlabel('Probabilidade')
+plt.ylabel('Densidade')
+plt.show()
+📈 6. Distribuição Normal (Gaussiana)
+Conceito: Distribuição simétrica em forma de sino. Média = Mediana = Moda.
+
+Exemplo: Altura de pessoas, erros de medição, notas padronizadas.
+
+Código:
+
+python
+Copiar código
+from scipy.stats import norm
+
+valores = norm.rvs(loc=0, scale=1, size=1000)
+sns.histplot(valores, bins=30, kde=True)
+plt.title('Distribuição Normal Padrão (μ=0, σ=1)')
+plt.xlabel('Valores')
+plt.ylabel('Frequência')
+plt.show()
+➤ Distribuição t de Student
+Conceito: Parecida com a normal, mas com caudas mais largas. Usada quando o n é pequeno.
+
+Exemplo: Teste de hipóteses com amostras pequenas.
+
+Código:
+
+python
+Copiar código
+from scipy.stats import t
+
+valores_t = t.rvs(df=10, size=1000)
+sns.histplot(valores_t, bins=30, kde=True)
+plt.title('Distribuição t de Student (df=10)')
+plt.xlabel('Valores')
+plt.ylabel('Frequência')
+plt.show()
+📐 7. Teorema do Limite Central (TLC)
+Conceito: A média de várias amostras aleatórias de uma população qualquer tende a seguir uma distribuição normal, mesmo que os dados originais não sejam normais.
+
+Uso: Justifica o uso da normal para inferência estatística.
+
+Simulação com código:
+
+python
+Copiar código
+import numpy as np
+
+medias = []
+for _ in range(1000):
+    amostra = np.random.exponential(scale=2, size=50)
+    medias.append(np.mean(amostra))
+
+sns.histplot(medias, bins=30, kde=True)
+plt.title('Teorema do Limite Central: Média de Amostras Exponenciais')
+plt.xlabel('Média das Amostras')
+plt.ylabel('Frequência')
+plt.show()
