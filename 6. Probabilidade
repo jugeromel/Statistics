@@ -1,0 +1,62 @@
+Variável Aleatória 
+
+Uma variável aleatória é uma função que associa um número a cada resultado possível de um experimento aleatório.
+
+🔹 Tipos: 
+
+Tipo de VariávelExemplosCaracterísticaDiscretaN° de filhos, lançamentos de dadoAssume valores contáveisContínuaAltura, tempo, pesoAssume infinitos valores num intervalo
+
+✅ Propriedades Básicas: 
+
+A soma de todas as probabilidades possíveis é 1:
+
+∑P(X=xi)=1\sum P(X = x_i) = 1∑P(X=xi​)=1 
+
+Valor esperado (esperança matemática):
+
+E[X]=∑xi⋅P(X=xi)E[X] = \sum x_i \cdot P(X = x_i)E[X]=∑xi​⋅P(X=xi​) 
+
+Variância:
+
+Var(X)=E[(X−E[X])2]Var(X) = E[(X - E[X])^2]Var(X)=E[(X−E[X])2] 📘 Exemplo (variável discreta): 
+
+python
+
+Copiar código
+
+import numpy as np # Valores possíveis da variável e suas probabilidades valores = np.array([0, 1, 2, 3]) probs = np.array([0.1, 0.2, 0.4, 0.3]) # Esperança (valor esperado) esperanca = np.sum(valores * probs) # Variância variancia = np.sum((valores - esperanca)**2 * probs) print(f"Valor esperado: {esperanca:.2f}") print(f"Variância: {variancia:.2f}") 
+
+🎯 Probabilidade Condicional 
+
+A probabilidade de um evento A dado que B ocorreu:
+
+P(A∣B)=P(A∩B)P(B)P(A|B) = \frac{P(A \cap B)}{P(B)}P(A∣B)=P(B)P(A∩B)​ 🔍 Exemplo: 
+
+python
+
+Copiar código
+
+# Probabilidade de A e B P_AB = 0.12 P_B = 0.3 P_A_dado_B = P_AB / P_B print(f"P(A|B) = {P_A_dado_B:.2f}") 
+
+📊 Teorema de Bayes 
+
+Usado para atualizar uma crença (probabilidade) com base em nova evidência:
+
+P(A∣B)=P(B∣A)⋅P(A)P(B)P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}P(A∣B)=P(B)P(B∣A)⋅P(A)​ 🔎 Exemplo Prático (teste médico): 
+
+Doença: 1% da população
+
+Teste: 99% sensível e 95% específico
+
+Qual a chance de realmente estar doente se o teste deu positivo?
+
+python
+
+Copiar código
+
+# Probabilidades P_D = 0.01 # P(doente) P_ND = 0.99 # P(não doente) P_Pos_D = 0.99 # P(positivo|doente) P_Pos_ND = 0.05 # P(positivo|não doente) # Teorema de Bayes P_Pos = P_Pos_D * P_D + P_Pos_ND * P_ND P_D_Pos = (P_Pos_D * P_D) / P_Pos print(f"Probabilidade real de estar doente dado teste positivo: {P_D_Pos:.2%}") 
+
+📦 Resumo 
+
+ConceitoDefiniçãoVariável aleatóriaAtribui um valor numérico aos resultados de um experimento aleatórioValor esperadoMédia ponderada dos valores possíveisVariânciaMede a dispersão dos valores da variávelProbabilidade condicionalChance de um evento ocorrer dado que outro já ocorreuTeorema de BayesAtualiza probabilidades com base em novas evidências
+
