@@ -1,0 +1,74 @@
+O que é um Teste de Hipótese? 
+
+É uma técnica estatística para verificar se uma suposição sobre um parâmetro populacional é plausível, com base em dados amostrais.
+
+🔸 Hipóteses 
+
+Hipótese nula (H₀): suposição inicial (ex: "a média é igual a 100").
+
+Hipótese alternativa (H₁ ou Hₐ): contraposição à H₀ (ex: "a média é diferente de 100").
+
+❗ Erros 
+
+Tipo de erroO que significaErro tipo I (α)Rejeitar H₀ quando ela é verdadeira (falso positivo)Erro tipo II (β)Não rejeitar H₀ quando ela é falsa (falso negativo)
+
+Nível de significância (α): é a probabilidade de cometer erro tipo I. Comum: 5% (0.05)
+
+🎯 p-valor 
+
+É a probabilidade de observar os dados (ou mais extremos), assumindo que H₀ é verdadeira.
+
+Se p-valor ≤ α → Rejeita H₀
+
+Se p-valor > α → Não rejeita H₀
+
+📘 1. Teste de Hipóteses para Médias (teorema do limite central) 
+
+Assume-se que a distribuição da média amostral tende à normal, mesmo com amostras pequenas.
+
+python
+
+Copiar código
+
+from scipy import stats import numpy as np # Exemplo: média populacional esperada = 100 amostra = np.array([102, 98, 101, 97, 99]) media_esperada = 100 # t-teste para uma amostra t_stat, p_valor = stats.ttest_1samp(amostra, media_esperada) print(f"t = {t_stat:.3f}, p-valor = {p_valor:.3f}") # Nível de significância alpha = 0.05 if p_valor < alpha: print("Rejeita H₀") else: print("Não rejeita H₀") 
+
+📊 2. Teste de Hipóteses para Proporções 
+
+Exemplo: Testar se a proporção de aprovados é 60%.
+
+python
+
+Copiar código
+
+import statsmodels.api as sm # 80 sucessos em 120 observações sucessos = 80 n = 120 p_esperada = 0.6 # Teste z para proporção teste = sm.stats.proportions_ztest(count=sucessos, nobs=n, value=p_esperada) print(f"z = {teste[0]:.3f}, p-valor = {teste[1]:.3f}") 
+
+🔗 Correlação vs Causalidade 
+
+Correlação: mede a força e direção da associação entre duas variáveis.
+
+Causalidade: uma variável causa mudança na outra (requer experimentação).
+
+python
+
+Copiar código
+
+# Correlação de Pearson x = np.array([1, 2, 3, 4, 5]) y = np.array([2, 4, 6, 8, 10]) corr, _ = stats.pearsonr(x, y) print(f"Correlação de Pearson: {corr:.2f}") 
+
+🧪 Experimentação: 
+
+Processo de comparar um grupo controle e um grupo variante para verificar diferenças estatísticas.
+
+Exemplo: testar se uma nova campanha aumenta as vendas comparado ao padrão.
+
+🧠 Outros Testes de Hipóteses 
+
+TestePara que serveTipo de dadoAnderson-DarlingTesta se os dados seguem uma distribuição específicaContínuoKruskal-WallisComparar múltiplos grupos sem assumir normalidadeOrdinal ou não-normalKolmogorov-SmirnovCompara uma amostra com uma distribuição teóricaContínuo
+
+Exemplo – Teste de normalidade (Anderson-Darling): 
+
+python
+
+Copiar código
+
+from scipy.stats import anderson dados = np.random.normal(0, 1, 100) resultado = anderson(dados) print("Estatística A²:", resultado.statistic) for i in range(len(resultado.critical_values)): print(f"Nível {resultado.significance_level[i]}%: Crit={resultado.critical_values[i]}") 
+
